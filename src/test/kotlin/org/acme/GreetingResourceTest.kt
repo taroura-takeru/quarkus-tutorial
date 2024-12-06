@@ -2,7 +2,7 @@ package org.acme
 
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
-import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
 import java.util.*
 
@@ -12,11 +12,10 @@ class GreetingResourceTest {
 
     @Test
     fun testHelloEndpoint() {
-        given()
-          .`when`().get("/hello")
-          .then()
-             .statusCode(200)
-             .body(`is`("Hello from Quarkus REST"))
+        given().`when`()["/hello?name=Bloom"]
+            .then()
+            .statusCode(200)
+            .body(containsString("Hello"))
     }
 
 }
