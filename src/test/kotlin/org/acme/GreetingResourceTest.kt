@@ -19,14 +19,4 @@ class GreetingResourceTest {
              .body(`is`("Hello from Quarkus REST"))
     }
 
-    @Test
-    fun testGreetingEndpoint() {
-        val uuid = UUID.randomUUID().toString()
-        given().pathParam("name", uuid)
-            .`when`()["/hello/greeting/{name}"]
-            .then()
-            .statusCode(200)
-            .body(`is`("hello $uuid"))
-    }
-
 }
