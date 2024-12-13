@@ -19,6 +19,11 @@ dependencies {
     implementation("io.quarkus:quarkus-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
+    implementation("io.quarkus:quarkus-grpc")
+    implementation("io.quarkus:quarkus-grpc-common")
+    implementation("io.grpc:grpc-kotlin-stub:1.3.0") // 必要なバージョンを指定
+    implementation("io.grpc:grpc-protobuf")
+    implementation("io.grpc:grpc-netty")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }
@@ -46,4 +51,8 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
         javaParameters = true
     }
+}
+
+quarkus {
+    quarkusBuildProperties.put("quarkus.grpc.codegen.proto-directory", "${project.projectDir}/ext/proto")
 }
